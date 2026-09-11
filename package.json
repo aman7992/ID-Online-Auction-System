@@ -1,0 +1,11 @@
+{
+  "name": "id-online-auction-system",
+  "version": "1.0.0",
+  "description": "ID Online Auction System - Real-time full-stack auction platform",
+  "scripts": {
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed": "npm --prefix server run seed"
+  }
+}
