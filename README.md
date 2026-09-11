@@ -2,6 +2,16 @@
 
 A modern, production-grade real-time online auction platform built with **React.js, Vite, Tailwind CSS, Node.js, Express.js, MongoDB, and Socket.IO**.
 
+
+---
+
+## 🌐 Live Demo & Deployment
+
+> 🚀 **Live Application:** [**https://id-online-auction-system-1.onrender.com**](https://id-online-auction-system-1.onrender.com)  
+> 🔗 **Backend API:** [`https://id-online-auction-system.onrender.com`](https://id-online-auction-system.onrender.com)  
+> 
+> *Tip: Render free-tier instances may take 30–50 seconds to spin up on the first request if idle.*
+
 ---
 
 ## Key Features
