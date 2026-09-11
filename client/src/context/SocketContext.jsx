@@ -11,8 +11,31 @@ export const SocketProvider = ({ children }) => {
   const { showToast } = useToast();
 
   useEffect(() => {
-    // Connect to server (using window.location.origin which proxies through Vite to port 5000)
-    const newSocket = io(window.location.origin, {
+    // Determine Socket.IO server URL:
+    // 1. Use VITE_SOCKET_URL if set
+    // 2. Use VITE_API_URL origin if set (without /api suffix)
+    // 3. Default to deployed Render backend in production
+    // 4. Fallback to window.location.origin in development (proxied by Vite to port 5000)
+    const getSocketUrl = () => {
+      const explicitSocketUrl = import.meta.env.VITE_SOCKET_URL;
+      if (explicitSocketUrl && explicitSocketUrl.trim()) {
+        return explicitSocketUrl.trim().replace(/\/+$/, '');
+      }
+
+      const envApiUrl = import.meta.env.VITE_API_URL;
+      if (envApiUrl && envApiUrl.trim()) {
+        return envApiUrl.trim().replace(/\/api\/?$/, '').replace(/\/+$/, '');
+      }
+
+      if (import.meta.env.PROD) {
+        return 'https://id-online-auction-system.onrender.com';
+      }
+
+      return window.location.origin;
+    };
+
+    const socketUrl = getSocketUrl();
+    const newSocket = io(socketUrl, {
       transports: ['websocket', 'polling'],
     });
 
